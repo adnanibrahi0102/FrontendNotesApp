@@ -3,6 +3,7 @@ import apiUrl from '../url.js';
 import axios from 'axios'
 import {  useDispatch } from "react-redux";
 import { login } from "../store/authSlice.js";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
     const [name,setName]=useState('');
@@ -11,6 +12,10 @@ const RegisterForm = () => {
      const dispatch=useDispatch();
     const handleSubmit=async(e)=>{
          e.preventDefault();
+         if(!name&&!password&&!email){
+           toast.error("Please fill all fields");
+           return;
+         }
           try {
             const {data}= await axios.post(`${apiUrl}/api/v1/auth/register`,{
                 name,
@@ -19,20 +24,21 @@ const RegisterForm = () => {
             })
 
             if(data.success){
+              toast.success("Successfully registered")
                 dispatch(login(data.user))
-                console.log("Successfully registered")
-                alert("Successfully registered")
             }
           } catch (error) {
             console.log(error)
+            toast.error("Error while registering")
           }
     }
   return (
     <div className="max-w-md mx-auto mt-2">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+      <form className="bg-transparent border shadow-md shadow-white rounded px-8 pt-6 pb-8 mb-4 mt-14" onSubmit={handleSubmit}>
+        <h1 className="text-center text-gray-300 font-bold text-lg">Register Form</h1>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-300 text-sm font-bold mb-2"
             htmlFor="name"
           >
             Name
@@ -49,7 +55,7 @@ const RegisterForm = () => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-300 text-sm font-bold mb-2"
             htmlFor="email"
           >
             Email
@@ -66,7 +72,7 @@ const RegisterForm = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-300 text-sm font-bold mb-2"
             htmlFor="password"
           >
             Password
@@ -83,7 +89,7 @@ const RegisterForm = () => {
         </div>
         <div className="flex items-center justify-center">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Register
