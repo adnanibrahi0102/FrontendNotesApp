@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import AddNote from "./pages/AddNote";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import SingleNote from "./pages/SingleNote";
 
 function App() {
   const isAuthenticated = useSelector(
@@ -25,6 +26,7 @@ function App() {
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/Allnotes" element={<Notes />} />
           <Route path="/create-note" element={<AddNote />} />
+          <Route path="/single-note/:id" element={<SingleNote/>}/>
         </Route>
       </Routes>
       <Toaster />
