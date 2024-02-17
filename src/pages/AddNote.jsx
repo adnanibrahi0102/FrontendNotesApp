@@ -99,7 +99,7 @@ const AddNote = () => {
               <div className='bg-gray-700 p-3 rounded-md shadow-md shadow-white mb-3'>
                 <h1 className='text-center font-bold text-lg '>{title}</h1>
               </div>
-              <div>{parsedContent}</div>
+              <div className='text-white'>{parsedContent}</div>
             </div>
           ) : ("")}
         </div>

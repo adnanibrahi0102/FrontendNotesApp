@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 import toast from "react-hot-toast";
 
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isAuthenticated = useSelector(
@@ -48,6 +49,7 @@ const Header = () => {
               fill="#000000"
             />
           </svg>
+    
         </div>
         <div className="block lg:hidden">
           <button
@@ -90,6 +92,7 @@ const Header = () => {
           } lg:block flex-grow lg:flex lg:items-center lg:w-auto`}
         >
           <div className="text-sm lg:flex-grow lg:text-right">
+         
             <Link
               to="/"
               className="block mt-4 lg:inline-block lg:mt-0 text-white font-bold mr-4 border-b border-transparent hover:border-white"

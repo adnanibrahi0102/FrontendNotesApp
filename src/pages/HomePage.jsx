@@ -18,9 +18,16 @@ const HomePage = () => {
     }
   }, [])
    return isAuthenticated?(
-    <div className="text-center text-white">
-      <pre>{JSON.stringify(userData,null,4)}</pre>
-    </div>
+    <div className="text-center text-white mt-14">
+    <p className="text-2xl font-semibold">Welcome back, {userData.userData.name}!</p>
+    <p className="text-lg mt-4 mb-8">Here are some tips for using NoteNova:</p>
+    <ul className="text-left list-disc mx-auto max-w-lg bg-gray-800 p-6 rounded-lg">
+      <li className="mb-2 text-gray-300">Tip 1: Use tags to organize your notes more efficiently.</li>
+      <li className="mb-2 text-gray-300">Tip 2: Take advantage of the search feature to find specific notes quickly.</li>
+      <li className="mb-2 text-gray-300">Tip 3: Explore the rich text editing capabilities with TinyMCE.</li>
+      <li className="mb-2 text-gray-300">Tip 4: Utilize folders to categorize your notes for better organization.</li>
+    </ul>
+  </div>
    ):(
     <div className=" px-4 py-8 flex items-center justify-center flex-col text-gray-300">
       <h1 className="text-3xl font-bold mb-4">Welcome to NoteNova</h1>

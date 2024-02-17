@@ -4,12 +4,13 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import apiUrl from "../url";
 import parse from "html-react-parser";
+import UpdateNote from "../components/UpdateNote";
 
 const SingleNote = () => {
   const navigate = useNavigate();
   const [note, setNote] = useState(null);
   const { id } = useParams();
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const getSingleNote = async () => {
       try {
@@ -47,7 +48,7 @@ const SingleNote = () => {
     }
   };
 
-  //conditionally render
+
   if (!note) {
     return <div>Loading...</div>;
   }
@@ -64,7 +65,9 @@ const SingleNote = () => {
           <p className="text-sm text-blue-600 ">Created At: {formatedDate}</p>
         </div>
         <div className="flex justify-end mb-2 mr-3">
-          <button className="bg-blue-500 text-black px-4 py-2 ml-2 rounded-md hover:bg-blue-900">
+        <button onClick={()=>navigate('/Allnotes')} className=" bg-indigo-500 px-4 py-2 rounded-md">Back</button>
+
+          <button onClick={()=>setShowModal(true)} className="bg-blue-500 text-black px-4 py-2 ml-2 rounded-md hover:bg-blue-900">
             Modify
           </button>
           <button
@@ -73,6 +76,11 @@ const SingleNote = () => {
           >
             Delete
           </button>
+          <UpdateNote
+           visible={showModal}
+           onCancel={() => setShowModal(false)}
+           note={note}
+          />
         </div>
       </div>
     </div>
