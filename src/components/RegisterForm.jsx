@@ -4,11 +4,13 @@ import axios from 'axios'
 import {  useDispatch } from "react-redux";
 import { login } from "../store/authSlice.js";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
+    const navigate=useNavigate();
      const dispatch=useDispatch();
     const handleSubmit=async(e)=>{
          e.preventDefault();
@@ -26,6 +28,10 @@ const RegisterForm = () => {
             if(data.success){
               toast.success("Successfully registered")
                 dispatch(login(data.user))
+                navigate('/login')
+                setEmail("");
+                setPassword("");
+                setName("");
             }
           } catch (error) {
             console.log(error)

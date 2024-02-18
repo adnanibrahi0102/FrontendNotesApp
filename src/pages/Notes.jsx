@@ -16,12 +16,15 @@ const Notes = () => {
 
   const getAllNotes = async () => {
     try {
+      
       const { data } = await axios.get(
         `${apiUrl}/api/v1/notes/getAll-Notes/${user.userData._id}`
       );
+      
       if (data.success) {
         setNotes(data.notes);
       }
+      
     } catch (error) {
       console.log(error);
       toast.error("Error getting all notes");

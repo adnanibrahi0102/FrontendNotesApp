@@ -89,7 +89,7 @@ const Header = () => {
         <div
           className={`w-full ${
             isMenuOpen ? "" : "hidden"
-          } lg:block flex-grow lg:flex lg:items-center lg:w-auto`}
+          } lg:block flex-grow lg:items-center lg:w-auto`}
         >
           <div className="text-sm lg:flex-grow lg:text-right">
          
