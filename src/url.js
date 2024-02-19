@@ -1,2 +1,2 @@
-const apiUrl = 'http://localhost:3000';
+const apiUrl = 'https://notesappbackend-xchx.onrender.com';
 export default apiUrl;
